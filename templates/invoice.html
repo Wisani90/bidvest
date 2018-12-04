@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Invoice</title>
+    </head>
+    
+    <body>
+        <div id="page-wrap">
+            {{ context_dict }}
+            <textarea id="header">INVOICE</textarea>
+            
+            <div id="identity">
+            
+                <textarea id="address">{{address}}
+        }
+
+            Phone: {{profile.tel_no}}</textarea>
+
+                <div id="logo">
+
+                  <div id="logoctr">
+                    <a href="javascript:;" id="change-logo" title="Change logo">Change Logo</a>
+                    <a href="javascript:;" id="save-logo" title="Save changes">Save</a>
+                    |
+                    <a href="javascript:;" id="delete-logo" title="Delete logo">Delete Logo</a>
+                    <a href="javascript:;" id="cancel-logo" title="Cancel changes">Cancel</a>
+                  </div>
+
+                  <div id="logohelp">
+                    <input id="imageloc" type="text" size="50" value=""><br>
+                    (max width: 540px, max height: 100px)
+                  </div>
+                  <img id="image" src="images/logo.png" alt="logo">
+                </div>
+            
+            </div>
+            
+            <div style="clear:both"></div>
+            <div class="row">
+
+                <div class="column" id="customer">
+
+                    <textarea id="customer-title">{{client_name}}</textarea>
+
+                    <table id="meta">
+                        <tbody><tr>
+                            <td class="meta-head">Invoice #</td>
+                            <td><textarea>{{invoice_id}}</textarea></td>
+                        </tr>
+                        <tr>
+
+                            <td class="meta-head">Date</td>
+                            <td><textarea id="date">{{date_invoiced}}</textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="meta-head">Amount Due</td>
+                            <td><div class="due">R {{total}}</div></td>
+                        </tr>
+
+                    </tbody></table>
+                
+                </div>
+
+                <div class="column" id="company">
+
+                    <textarea id="company-title">{{company.name}}</textarea>
+
+                    <table id="meta">
+                        <tbody><tr>
+                            <td class="meta-head">Vat #</td>
+                            <td><textarea>{{vat_no}}</textarea></td>
+                        </tr>
+                        <tr>
+
+                            <td class="meta-head">Address</td>
+                            <td><textarea id="date">{{company.address}}</textarea></td>
+                        </tr>
+                        <tr>
+                            <td class="meta-head">Amount Due</td>
+                            <td><div class="due">R {{total}}</div></td>
+                        </tr>
+
+                    </tbody></table>
+                
+                </div>
+            </div>
+            
+            <table id="items">
+            
+              <tbody><tr>
+                  <th>Item</th>
+                  <th>Description</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+              </tr>
+              
+              {% for entry in billed_items %}
+                  <tr class="item-row">
+                    {% for key, value in entry.items %}
+                     
+                      <th><span class={{key}}>{% if key == "total" %} R{% endif %} {{value}}</span></th>
+                    {% endfor %}
+                  </tr>
+              {%endfor%}
+
+            
+              
+              <tr>
+                  <td colspan="2" class="blank"> </td>
+                  <td colspan="2" class="total-line">Subtotal</td>
+                  <td class="total-value"><div id="subtotal">R {{subtotal}}</div></td>
+              </tr>
+              <tr>
+
+                  <td colspan="2" class="blank"> </td>
+                  <td colspan="2" class="total-line">Total</td>
+                  <td class="total-value"><div id="total">R {{total}}</div></td>
+              </tr>
+              <tr>
+                  <td colspan="2" class="blank"> </td>
+                  <td colspan="2" class="total-line">Amount Paid</td>
+
+                  <td class="total-value"><textarea id="paid">R {{paid}}</textarea></td>
+              </tr>
+              <tr>
+                  <td colspan="2" class="blank"> </td>
+                  <td colspan="2" class="total-line balance">Balance Due</td>
+                  <td class="total-value balance"><div class="due">R {{due}}</div></td>
+              </tr>
+            
+            </tbody></table>
+            
+            <div id="terms">
+              <h5>Terms</h5>
+              <textarea>NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
+            </div>
+        
+        </div>
+    </body>
+
+
+
+</html>
