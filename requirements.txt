@@ -9,7 +9,7 @@ Pillow==5.3.0
 pyPdf==1.13
 PyPDF2==1.26.0
 pytz==2018.7
-reportlab==3.5.12
+reportlab==3.5.55
 requests==2.20.1
 six==1.11.0
 tika==1.19
